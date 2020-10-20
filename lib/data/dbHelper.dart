@@ -42,10 +42,10 @@ class DbHelper {
 
   Future<int> delete(int id) async {
     Database db = await this.db;
-    var rst = await db.rawDelete("delete form products where id=$id");
-    //var result = await db.delete("products", where: id.toString());
+    //var rst = await db.rawDelete("delete form products where id=$id");
+    var result = await db.delete("products", where: "id=?", whereArgs: [id]);
 
-    return rst;
+    return result;
   }
 
   Future<int> update(Product product) async {

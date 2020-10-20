@@ -18,8 +18,8 @@ class _ProductListState extends State {
 
   @override
   void initState() {
-    getProducts();
     super.initState();
+    getProducts();
   }
 
   @override
@@ -74,8 +74,10 @@ class _ProductListState extends State {
   void getProducts() async {
     var productsFuture = dbHelper.getProducts();
     productsFuture.then((data) {
-      this.products = data;
-      productCount = data.length;
+      setState(() {
+        this.products = data;
+        productCount = data.length;
+      });
     });
   }
 
